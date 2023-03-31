@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  height: 7rem;
+  width: 100%;
+  background-color: blue;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+/*! NavBar BRAND */
+nav .navBrand {
+  margin: 0 1rem;
+}
+nav .navBrand a img {
+  height: 100%;
+  width: 100%;
+}
+nav .navBrand a img:hover {
+  animation: turn360 1s ease-out;
+}
+
+/*!NavBar list  */
+
+nav .navBar-nav .navBarList {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+nav .navBar-nav .navBarList a {
+  text-decoration: none;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+
+nav .navBar-nav .navBarList li {
+  text-decoration: none;
+  margin: 0 1rem;
+}
+/*! efect navlist */
+nav .navBar-nav .navBarList li::after {
+  content: "";
+  display: flex;
+  height: 5px;
+  width: 100%;
+  background: rgb(77, 151, 255);
+  border-radius: 2rem;
+  transform: scaleX(0);
+  transition: 0.2s ease all;
+}
+nav .navBar-nav .navBarList li:hover::after {
+  transform: scaleX(1);
+}
+
+/* !CartWidget */
+
+.cartWidget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-left: 1rem;
+}
+.cartWidget img {
+  height: 40%;
+  cursor: pointer;
+}
+.cartWidget p {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/*! ItemListContainer */
+.container {
+  padding-top: 10rem;
+  margin-right: 2rem;
+  font-family: monospace;
+}
+
+.container .title {
+  font-size: 3rem;
+  text-align: right;
+  margin: 0.5rem 0;
+  font-family: "Alkatra", cursive;
+}
+
+.container .subtitle {
+  text-align: right;
+  font-size: 1.5rem;
+  font-family: "Roboto Slab", serif;
+}
+/* Animations */
+@keyframes turn360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
