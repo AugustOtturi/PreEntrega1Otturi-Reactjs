@@ -1,0 +1,180 @@
+//!Variables
+//*Colores
+
+$color1: #000814;
+$color2: #001d3d;
+$color3: #003566;
+$color4: #ffc300;
+$color5: #ffd60a;
+
+//*Fuentes
+$font-family1: "Asap",
+sans-serif;
+$font-family2: "Roboto",
+sans-serif;
+$font-family3: "Sofia Sans Condensed",
+sans-serif;
+
+//!Mixins
+
+@mixin flex-justify-align($justify: normal, $align: stretch) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-big($justify: normal, $align: stretch, $direction: row, $wrap: nowrap) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+}
+
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+//!MENÚ
+
+.Navbar {
+    background-color: $color1;
+
+    .Container {
+        .navbar-toggler {
+            background-color: rgb(245, 225, 225);
+        }
+
+        .NavbarBrand {
+            img {
+                &:hover {
+                    animation: balance 1s ease forwards;
+                }
+            }
+        }
+
+        .NavBarColapse {
+            flex-grow: 0 !important;
+
+            .Nav {
+                margin-right: 3rem;
+
+                .NavLink,
+                .nav-link {
+                    font-size: 1.5rem;
+                    color: white;
+                    font-family: $font-family3;
+                    transition: 0.2s all ease;
+
+                    &:hover {
+                        color: $color5;
+                    }
+
+                    .dropdown-item {
+                        font-size: 1.3rem;
+                        font-family: $font-family3;
+                    }
+                }
+            }
+
+            .cartWidget {
+                color: white;
+                width: 4rem;
+                display: flex;
+                align-items: center;
+                flex-direction: column-reverse;
+                margin-bottom: 15px;
+
+                .ShoppingCart {
+                    height: 1.8rem;
+                    width: 1.8rem;
+                }
+
+                p {
+                    font-size: 1.5rem;
+                    margin-bottom: 0;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+//! HERO
+
+.Hero {
+    margin: 2rem 0;
+
+    .heroRow {
+
+        h1,
+        h2 {
+            text-align: center;
+            color: $color2;
+            font-family: $font-family1;
+            font-weight: bold;
+        }
+    }
+}
+
+//! ANIMACIONES
+@keyframes balance {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(15deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+//! CounterItem
+
+.Counter {
+    width: 15rem;
+    height: 15rem;
+    gap: 2rem;
+    @include flex-big(center, center, column, nowrap);
+
+    .CounterControls {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+
+
+
+}
+
+
+.CARDIMG {
+    height: 150px;
+    width: 150px;
+    margin: 15px auto;
+
+}

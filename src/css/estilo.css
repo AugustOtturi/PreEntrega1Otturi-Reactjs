@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: whitesmoke; }
+
+.Navbar {
+  background-color: #000814; }
+  .Navbar .Container .navbar-toggler {
+    background-color: #f5e1e1; }
+  .Navbar .Container .NavbarBrand img:hover {
+    animation: balance 1s ease forwards; }
+  .Navbar .Container .NavBarColapse {
+    flex-grow: 0 !important; }
+    .Navbar .Container .NavBarColapse .Nav {
+      margin-right: 3rem; }
+      .Navbar .Container .NavBarColapse .Nav .NavLink,
+      .Navbar .Container .NavBarColapse .Nav .nav-link {
+        font-size: 1.5rem;
+        color: white;
+        font-family: "Sofia Sans Condensed", sans-serif;
+        transition: 0.2s all ease; }
+        .Navbar .Container .NavBarColapse .Nav .NavLink:hover,
+        .Navbar .Container .NavBarColapse .Nav .nav-link:hover {
+          color: #ffd60a; }
+        .Navbar .Container .NavBarColapse .Nav .NavLink .dropdown-item,
+        .Navbar .Container .NavBarColapse .Nav .nav-link .dropdown-item {
+          font-size: 1.3rem;
+          font-family: "Sofia Sans Condensed", sans-serif; }
+    .Navbar .Container .NavBarColapse .cartWidget {
+      color: white;
+      width: 4rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column-reverse;
+      margin-bottom: 15px; }
+      .Navbar .Container .NavBarColapse .cartWidget .ShoppingCart {
+        height: 1.8rem;
+        width: 1.8rem; }
+      .Navbar .Container .NavBarColapse .cartWidget p {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+        margin-left: 5px; }
+
+.Hero {
+  margin: 2rem 0; }
+  .Hero .heroRow h1,
+  .Hero .heroRow h2 {
+    text-align: center;
+    color: #001d3d;
+    font-family: "Asap", sans-serif;
+    font-weight: bold; }
+
+@keyframes balance {
+  0% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(15deg); }
+  50% {
+    transform: rotate(-15deg); }
+  75% {
+    transform: rotate(15deg); }
+  100% {
+    transform: rotate(0); } }
+
+.Counter {
+  width: 15rem;
+  height: 15rem;
+  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+  .Counter .CounterControls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse; }
+
+.CARDIMG {
+  height: 150px;
+  width: 150px;
+  margin: 15px auto; }

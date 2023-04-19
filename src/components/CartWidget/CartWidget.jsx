@@ -1,11 +1,14 @@
-import cart from "../assets/cart.svg";
+import { FiShoppingCart } from "react-icons/fi";
 import React, { useState } from "react";
 
 export function CartWidget() {
   const [count, plusOne] = useState(0);
   return (
     <div className="cartWidget">
-      <img src={cart} alt="cart_svg" onClick={() => plusOne(count + 1)} />
+      <FiShoppingCart
+        onClick={() => plusOne(count + 1)}
+        className="ShoppingCart"
+      />
       <p>{count}</p>
     </div>
   );
