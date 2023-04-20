@@ -10,8 +10,10 @@ body {
   background-color: #000814; }
   .Navbar .Container .navbar-toggler {
     background-color: #f5e1e1; }
-  .Navbar .Container .NavbarBrand img:hover {
-    animation: balance 1s ease forwards; }
+  .Navbar .Container .NavbarBrand img {
+    width: 40% !important; }
+    .Navbar .Container .NavbarBrand img:hover {
+      animation: balance 1s ease forwards; }
   .Navbar .Container .NavBarColapse {
     flex-grow: 0 !important; }
     .Navbar .Container .NavBarColapse .Nav {
@@ -85,3 +87,6 @@ body {
   height: 150px;
   width: 150px;
   margin: 15px auto; }
+
+footer {
+  background-color: #000814; }

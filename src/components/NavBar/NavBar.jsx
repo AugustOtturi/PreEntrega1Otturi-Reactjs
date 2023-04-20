@@ -4,34 +4,41 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import market from "../../assets/market.png";
 import { CartWidget } from "../CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
     <Navbar expand="lg" className="Navbar">
       <Container fluid className="Container">
-        <Navbar.Brand href="#home" className="NavbarBrand">
-          <img src={market} alt="Logo" className="w-50" />
-        </Navbar.Brand>
+        <Link className="NavbarBrand" to="/">
+          <img src={market} alt="Logo" />
+        </Link>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="NavBarColapse">
           <Nav className="Nav">
-            <Nav.Link href="#home" className="NavLink">
+            <Link to="/" className="NavLink nav-link">
               Home
-            </Nav.Link>
-            <Nav.Link href="#link" className="NavLink">
-              Service
-            </Nav.Link>
+            </Link>
+            <Link className="nav-link" to="/notfound">
+              Services
+            </Link>
+
             <NavDropdown
-              title="Catalogo"
+              title="Cursos"
               id="basic-nav-dropdown"
               className="NavLink text-white"
             >
-              <NavDropdown.Item href="/cursos">Cursos</NavDropdown.Item>
-              <NavDropdown.Item href="#productos">Productos</NavDropdown.Item>
+              <Link to="/category/frontend" className="dropdown-item">
+                Frontend
+              </Link>
+              <Link to="/category/backend" className="dropdown-item">
+                Backend
+              </Link>
             </NavDropdown>
-            <Nav.Link href="#contacto" className="NavLink">
+            <Link className="nav-link" to="/notfound">
               Contacto
-            </Nav.Link>
+            </Link>
           </Nav>
           <CartWidget></CartWidget>
         </Navbar.Collapse>
@@ -39,3 +46,5 @@ export const NavBar = () => {
     </Navbar>
   );
 };
+
+export default NavBar;

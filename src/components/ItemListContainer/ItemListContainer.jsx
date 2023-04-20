@@ -1,35 +1,55 @@
-import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 //*Componentes
 import ItemList from "../ItemList/ItemList";
+import { fCursos } from "../../js/Cursos";
 
-export function ItemListContainer({ Saludo }) {
+export function ItemListContainer() {
   const [datos, setDatos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { cid } = useParams();
 
   useEffect(() => {
-    async function fCursos() {
-      setTimeout(async () => {
-        const res = await fetch("../../src/json/Cursos.json");
-        const data = await res.json();
-        setDatos(data);
-        setIsLoading(false);
-      }, 1000);
+    if (!cid) {
+      fCursos()
+        .then((res) => setDatos(res))
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
+    } else {
+      fCursos()
+        .then((res) => {
+          setDatos(res.filter((curso) => curso.category.toLowerCase() === cid));
+        })
+        .finally(() => setIsLoading(false));
     }
-    fCursos();
-  }, []);
+  }, [cid]);
 
   return (
     <Container fluid className="Hero">
       <Row className="heroRow">
-        <h1 className="heroTitle">{Saludo.title}</h1>
-        <h2 className="heroSubtitle">{Saludo.subtitle}</h2>
+        {!cid ? (
+          <>
+            <h1 className="heroTitle">¡Hola!</h1>
+            <h2 className="heroSubtitle">Bienvenido a DevStore</h2>
+          </>
+        ) : (
+          <>
+            <h1 className="heroTitle">¡Hola!</h1>
+            <h2 className="heroSubtitle">Este es un espacio {cid} </h2>
+          </>
+        )}
       </Row>
-      <Row>
-        {isLoading ? <div>Cargando...</div> : <ItemList datos={datos} />}
+      <Row className="mt-5">
+        {isLoading ? (
+          <div className="text-center display-5">Cargando...</div>
+        ) : (
+          <ItemList datos={datos} />
+        )}
       </Row>
     </Container>
   );
 }
+export default ItemListContainer;

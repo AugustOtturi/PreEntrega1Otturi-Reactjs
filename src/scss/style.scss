@@ -58,6 +58,8 @@ body {
 
         .NavbarBrand {
             img {
+                width: 40% !important;
+
                 &:hover {
                     animation: balance 1s ease forwards;
                 }
@@ -177,4 +179,8 @@ body {
     width: 150px;
     margin: 15px auto;
 
+}
+
+footer {
+    background-color: $color1;
 }

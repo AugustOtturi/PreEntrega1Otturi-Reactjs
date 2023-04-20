@@ -12,9 +12,8 @@ const ItemList = ({ datos }) => {
             <Col className=" py-3" sm={6} lg={3} xl={3} key={dt.id}>
               <ItemsCard
                 id={dt.id}
+                category={dt.category}
                 name={dt.name}
-                teacher={dt.teacher}
-                price={dt.price}
                 schedule={dt.schedule}
                 link={dt.link}
                 difficulty={dt.difficulty}
