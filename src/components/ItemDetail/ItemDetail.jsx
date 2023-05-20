@@ -1,33 +1,49 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import React from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ItemCount from '../ItemCount/ItemCount';
+import { useState } from 'react';
+import { useCartContext } from '../../context/CartContext';
 
 const ItemDetail = ({
-  id,
-  name,
-  teacher,
-  link,
-  schedule,
-  difficulty,
-  price,
+    id,
+    name,
+    teacher,
+    link,
+    schedule,
+    difficulty,
+    price,
+    description,
 }) => {
-  return (
-    <Container className="pt-3 pb-5 mb-5">
-      <Row>
-        <Col>
-          <div className="cardItemDetail d-flex justify-content-center align-items-center flex-column">
-            <h1 className="text-center mt-5">{name}</h1>
-            <img className="mt-5 w-25" src={link} alt="" />
-            <h3>{teacher}</h3>
-            <h3>{schedule}</h3>
-            <h3>{difficulty}</h3>
-            <h3>{price}</h3>
-          </div>
-        </Col>
-      </Row>
-    </Container>
-  );
+    const { agregarAlCarrito } = useCartContext();
+
+    const onAdd = (cantidad) => {
+        agregarAlCarrito({ name, price, id, cantidad });
+    };
+
+    return (
+        <Container className="pt-3 pb-5 mb-5">
+            <Row>
+                <h1 className="text-center my-5">{name}</h1>
+                <Col className="mt-4" xl={6} md={6} xs={12}>
+                    <div className="CardItemDescription h-100">
+                        <p>{description}</p>
+                    </div>
+                </Col>
+                <Col className="mt-4" xl={6} md={6} xs={12}>
+                    <div className="cardItemDetail d-flex justify-content-around align-items-center flex-column h-100">
+                        <img className=" imgDetail" src={link} alt="" />
+                        <h4>{teacher}</h4>
+                        <h4>Horarios: {schedule}</h4>
+                        <h4>Dificultad: {difficulty}</h4>
+                        <h4>Precio: {price}</h4>
+
+                        <ItemCount initial={1} stock={5} onAdd={onAdd} />
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 export default ItemDetail;
