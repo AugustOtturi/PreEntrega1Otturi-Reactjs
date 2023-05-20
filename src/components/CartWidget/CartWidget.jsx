@@ -1,7 +1,8 @@
 import { FiShoppingCart } from 'react-icons/fi';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useCartContext } from '../../context/CartContext';
+import { FiTrash } from 'react-icons/fi';
 
 export function CartWidget({ name, ...props }) {
     const [show, setShow] = useState(false);
@@ -9,7 +10,29 @@ export function CartWidget({ name, ...props }) {
     const handleShow = () => setShow(true);
     const { cartList, vaciarCarrito, removerProducto } = useCartContext();
 
-    console.log(cartList);
+    const formattedCartList = useMemo(() => {
+        return cartList.reduce((formatted, item) => {
+            const productsGrouped = formatted.find(
+                (product) => product.itemId === item.id
+            );
+
+            if (productsGrouped) {
+                productsGrouped.items.push(item);
+            } else {
+                formatted.push({
+                    itemId: item.id,
+                    items: [item],
+                });
+            }
+
+            return formatted;
+        }, []);
+    }, [cartList]);
+
+    const totalPrice = cartList.reduce(
+        (total, item) => total + parseInt(item.price),
+        0
+    );
 
     return (
         <div className="cartWidget">
@@ -34,21 +57,29 @@ export function CartWidget({ name, ...props }) {
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    {cartList.map((producto, indx) => (
+                    {formattedCartList.map((productosAgrupados, indx) => (
                         <div className="cartItemLine" key={indx}>
-                            <button
-                                onClick={() => removerProducto(producto.id)}>
-                                X
-                            </button>
-                            <p className="cartItemLineName">{producto.name}</p>
+                            <div
+                                onClick={() =>
+                                    removerProducto(productosAgrupados.itemId)
+                                }>
+                                <FiTrash />
+                            </div>
+                            <p className="cartItemLineName">
+                                {productosAgrupados.items[0].name}
+                            </p>
                             <p className="cartItemLinePrice">
-                                {producto.price}
+                                ${productosAgrupados.items[0].price}
                             </p>
                             <p className="cartItemLineCant">
-                                {producto.cantidad}
+                                {productosAgrupados.items.length}
                             </p>
                         </div>
                     ))}
+                    <div className="line"></div>
+
+                    <p>Total: ${totalPrice}</p>
+
                     <div className="line"></div>
                     <button
                         className="btn btn-dark btnCartVaciar"
@@ -60,16 +91,3 @@ export function CartWidget({ name, ...props }) {
         </div>
     );
 }
-
-/* export function CartWidget() {
-    const [count, plusOne] = useState(0);
-    return (
-        <div className="cartWidget">
-            <FiShoppingCart
-                onClick={() => plusOne(count + 1)}
-                className="ShoppingCart"
-            />
-            <p>{count}</p>
-        </div>
-    );
-} */

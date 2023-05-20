@@ -15,6 +15,12 @@ export const CartContexProvider = ({ children }) => {
         setCartList([...cartList, nuevoProducto]);
     };
 
+    // Agregar multiples productois
+    const agregarProductos = (nuevosProductos) => {
+        console.log('RENDER');
+        setCartList([...cartList, ...nuevosProductos]);
+    };
+
     //!Limpiar el carrito
     const vaciarCarrito = () => {
         setCartList([]);
@@ -38,6 +44,7 @@ export const CartContexProvider = ({ children }) => {
                 agregarAlCarrito,
                 vaciarCarrito,
                 removerProducto,
+                agregarProductos,
             }}>
             {children}
         </CartContext.Provider>

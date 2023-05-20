@@ -15,10 +15,16 @@ const ItemDetail = ({
     price,
     description,
 }) => {
-    const { agregarAlCarrito } = useCartContext();
+    const { agregarAlCarrito, agregarProductos } = useCartContext();
 
     const onAdd = (cantidad) => {
-        agregarAlCarrito({ name, price, id, cantidad });
+        const productos = [];
+        for (let i = 0; i < cantidad; i++) {
+            const producto = { name, price, id };
+            productos.push(producto);
+        }
+
+        agregarProductos(productos);
     };
 
     return (

@@ -23,7 +23,11 @@ const ItemDetailContainer = () => {
 
     return (
         <div className="ItemDetailContainer">
-            {product ? <ItemDetail {...product} /> : <ProductNotFound />}
+            {product ? (
+                <ItemDetail {...product} id={pid} />
+            ) : (
+                <ProductNotFound />
+            )}
         </div>
     );
 };
