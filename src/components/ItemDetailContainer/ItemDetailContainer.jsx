@@ -2,9 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
-import { fCursos } from '../../js/Cursos';
 import { doc, getFirestore, getDoc } from 'firebase/firestore';
-
+import ProductNotFound from '../ProductNotFound/ProductNotFound';
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null);
     const { pid } = useParams();
@@ -18,7 +17,7 @@ const ItemDetailContainer = () => {
 
     return (
         <div className="ItemDetailContainer">
-            <ItemDetail {...product} />
+            {product ? <ItemDetail {...product} /> : <ProductNotFound />}
         </div>
     );
 };

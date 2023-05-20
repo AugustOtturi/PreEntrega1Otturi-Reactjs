@@ -26,7 +26,7 @@ export const CartContexProvider = ({ children }) => {
         );
         setCartList(carritoActualizado);
     };
-    //Funcion para sumar cuando un elemento ya se encuentra (maybe con includes y logica)
+    //Funcion para sumar cuando un elemento ya se encuentra
     const estaEstaEnElCarrito = (itemId) => {
         return cartList.some((producto) => producto.id === itemId);
     };
