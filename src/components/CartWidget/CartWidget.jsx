@@ -9,53 +9,55 @@ export function CartWidget({ name, ...props }) {
     const handleShow = () => setShow(true);
     const { cartList, vaciarCarrito, removerProducto } = useCartContext();
 
-    return (
-        <>
-            <div className="cartWidget">
-                <FiShoppingCart
-                    onClick={handleShow}
-                    className="ShoppingCart"></FiShoppingCart>
+    console.log(cartList);
 
-                <Offcanvas
-                    show={show}
-                    placement="end"
-                    onHide={handleClose}
-                    {...props}>
-                    <Offcanvas.Header closeButton>
-                        <Offcanvas.Title className="cartTitle">
-                            Carrito de compras
-                        </Offcanvas.Title>
-                    </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        {cartList.map((producto, indx) => (
-                            <div className="cartItemLine" key={indx}>
-                                <button
-                                    onClick={() =>
-                                        removerProducto(producto.id)
-                                    }>
-                                    X
-                                </button>
-                                <p className="cartItemLineName">
-                                    {producto.name}
-                                </p>
-                                <p className="cartItemLinePrice">
-                                    {producto.price}
-                                </p>
-                                <p className="cartItemLineCant">
-                                    {producto.cantidad}
-                                </p>
-                            </div>
-                        ))}
-                        <div className="line"></div>
-                        <button
-                            className="btn btn-dark btnCartVaciar"
-                            onClick={vaciarCarrito}>
-                            Vaciar carrito
-                        </button>
-                    </Offcanvas.Body>
-                </Offcanvas>
-            </div>
-        </>
+    return (
+        <div className="cartWidget">
+            {cartList.length > 0 ? (
+                <div className="badge">
+                    <p>{cartList.length}</p>
+                </div>
+            ) : null}
+
+            <FiShoppingCart
+                onClick={handleShow}
+                className="ShoppingCart"></FiShoppingCart>
+
+            <Offcanvas
+                show={show}
+                placement="end"
+                onHide={handleClose}
+                {...props}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title className="cartTitle">
+                        Carrito de compras
+                    </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    {cartList.map((producto, indx) => (
+                        <div className="cartItemLine" key={indx}>
+                            <button
+                                onClick={() => removerProducto(producto.id)}>
+                                X
+                            </button>
+                            <p className="cartItemLineName">{producto.name}</p>
+                            <p className="cartItemLinePrice">
+                                {producto.price}
+                            </p>
+                            <p className="cartItemLineCant">
+                                {producto.cantidad}
+                            </p>
+                        </div>
+                    ))}
+                    <div className="line"></div>
+                    <button
+                        className="btn btn-dark btnCartVaciar"
+                        onClick={vaciarCarrito}>
+                        Vaciar carrito
+                    </button>
+                </Offcanvas.Body>
+            </Offcanvas>
+        </div>
     );
 }
 

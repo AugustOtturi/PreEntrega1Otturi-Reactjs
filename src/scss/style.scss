@@ -97,21 +97,37 @@ body {
                 align-items: center;
                 flex-direction: column-reverse;
                 margin-bottom: 15px;
+                position: relative;
 
                 .ShoppingCart {
                     height: 1.8rem;
                     width: 1.8rem;
                 }
 
+            }
+
+            .badge {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: -10px;
+                right: 0;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background-color: #fff;
+                color: #222;
+
                 p {
-                    font-size: 1.5rem;
                     margin-bottom: 0;
-                    margin-left: 5px;
+                    font-size: 0.75rem;
                 }
             }
         }
     }
 }
+
 
 //! HERO
 
