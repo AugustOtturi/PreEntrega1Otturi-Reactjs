@@ -4,9 +4,17 @@ import Form from 'react-bootstrap/Form';
 
 import { useNavigate } from 'react-router-dom';
 
+import {
+    getFirestore,
+    addDoc,
+    collection,
+    Timestamp,
+} from 'firebase/firestore';
+
 import { groupCartItems } from '../CartWidget/CartWidget';
 
 import { useCartContext } from '../../context/CartContext';
+import { db } from '../../firebase/config';
 
 /* Checkout mínimo:
 ○ Items con sus cantidades
@@ -42,10 +50,23 @@ const Checkout = () => {
         0
     );
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // TODO: Crear orden
+        // const timestamp = Timestamp.fromDate(new Date());
+
+        // const data = {
+        //     fecha: timestamp,
+        //     items: [], // You can populate this array with document references later
+        // };
+
+        // const productsRef = collection(db, 'cursos');
+        // const ids = cartList.map(item => item.id);
+
+        // const productsRef
+
+        await addDoc(collection(db, 'ordenes'), data);
     };
 
     const handleInputChange = (e) => {
