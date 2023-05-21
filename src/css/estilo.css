@@ -158,3 +158,14 @@ footer {
 .checkoutItemsCount {
   color: #7a7a7a;
   margin-left: 2rem; }
+
+.ordenIdFinal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; }
