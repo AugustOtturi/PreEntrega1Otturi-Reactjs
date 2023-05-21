@@ -226,7 +226,7 @@ body {
     margin: 0 auto;
     height: 2px;
     background-color: black;
-
+    opacity: 0.7;
 }
 
 //!ItemDetail
@@ -274,4 +274,22 @@ body {
 
 footer {
     background-color: $color1;
+}
+
+
+
+.formulario {
+    width: 35%;
+    margin: 0 auto;
+    display: block;
+    padding: 2rem 0;
+}
+
+.formulario button {
+    margin-left: 1rem;
+}
+
+.checkoutItemsCount {
+    color: rgb(122, 122, 122);
+    margin-left: 2rem;
 }

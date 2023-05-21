@@ -4,6 +4,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
+import Checkout from './components/Checkout/Checkout';
 import { useEffect } from 'react';
 
 //!Estilos
@@ -233,6 +234,7 @@ const App = () => {
 
                     <Route path="/contacto" element={<NotFound />} />
                     <Route path="/notfound" element={<NotFound />} />
+                    <Route path="/checkout" element={<Checkout />} />
                     <Route path="*" element={<Navigate to="/notfound" />} />
                 </Routes>
                 <Footer />

@@ -3,6 +3,26 @@ import React, { useState, useMemo } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useCartContext } from '../../context/CartContext';
 import { FiTrash } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+
+export function groupCartItems(cartList) {
+    return cartList.reduce((formatted, item) => {
+        const productsGrouped = formatted.find(
+            (product) => product.itemId === item.id
+        );
+
+        if (productsGrouped) {
+            productsGrouped.items.push(item);
+        } else {
+            formatted.push({
+                itemId: item.id,
+                items: [item],
+            });
+        }
+
+        return formatted;
+    }, []);
+}
 
 export function CartWidget({ name, ...props }) {
     const [show, setShow] = useState(false);
@@ -10,24 +30,12 @@ export function CartWidget({ name, ...props }) {
     const handleShow = () => setShow(true);
     const { cartList, vaciarCarrito, removerProducto } = useCartContext();
 
-    const formattedCartList = useMemo(() => {
-        return cartList.reduce((formatted, item) => {
-            const productsGrouped = formatted.find(
-                (product) => product.itemId === item.id
-            );
+    const navigate = useNavigate();
 
-            if (productsGrouped) {
-                productsGrouped.items.push(item);
-            } else {
-                formatted.push({
-                    itemId: item.id,
-                    items: [item],
-                });
-            }
-
-            return formatted;
-        }, []);
-    }, [cartList]);
+    const formattedCartList = useMemo(
+        () => groupCartItems(cartList),
+        [cartList]
+    );
 
     const totalPrice = cartList.reduce(
         (total, item) => total + parseInt(item.price),
@@ -85,6 +93,11 @@ export function CartWidget({ name, ...props }) {
                         className="btn btn-dark btnCartVaciar"
                         onClick={vaciarCarrito}>
                         Vaciar carrito
+                    </button>
+                    <button
+                        className="mx-2 btn btn-dark"
+                        onClick={() => navigate('/checkout')}>
+                        Ir a pagar
                     </button>
                 </Offcanvas.Body>
             </Offcanvas>
