@@ -17,7 +17,6 @@ export const CartContexProvider = ({ children }) => {
 
     // Agregar multiples productois
     const agregarProductos = (nuevosProductos) => {
-        console.log('RENDER');
         setCartList([...cartList, ...nuevosProductos]);
     };
 

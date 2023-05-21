@@ -10,14 +10,19 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState();
     const { pid } = useParams();
 
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
         const dbFirestore = getFirestore();
         const queryDoc = doc(dbFirestore, 'cursos', pid);
 
-        getDoc(queryDoc).then((res) => setProduct(res.data()));
+        getDoc(queryDoc).then((res) => {
+            setLoaded(true);
+            return setProduct(res.data());
+        });
     }, [pid]);
 
-    if (product == undefined) {
+    if (!loaded) {
         return <Spinner />;
     }
 
